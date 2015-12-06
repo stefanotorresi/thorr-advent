@@ -9,8 +9,7 @@ declare(strict_types=1);
 
 namespace Thorr\AdventOfCode\Command;
 
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
 
 use function Thorr\AdventOfCode\Puzzle\Day1\{floor, basement};
 

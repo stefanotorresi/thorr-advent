@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace Thorr\AdventOfCode\Test\Puzzle\Day1;
 
-use function Thorr\AdventOfCode\Puzzle\Day1\floor;
-
 use PHPUnit_Framework_TestCase as TestCase;
 
+use function Thorr\AdventOfCode\Puzzle\Day1\floor;
 
 class FloorTest extends TestCase
 {
