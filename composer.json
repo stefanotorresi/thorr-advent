@@ -1,0 +1,33 @@
+{
+    "name": "stefanotorresi/thorr-advent-of-code",
+    "description": "Advent of Code puzzle solutions in PHP",
+    "type": "Puzzles",
+    "require": {
+        "php": "^7.0",
+        "symfony/console": "^3.0",
+        "beberlei/assert": "^2.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Thorr\\AdventOfCode\\": "src/"
+        },
+        "files": [
+            "src/Puzzle/Day1/basement.php",
+            "src/Puzzle/Day1/floor.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": { "Thorr\\AdventOfCode\\Test\\": "test/" }
+    },
+    "bin": ["advent-of-code"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stefano Torresi",
+            "email": "stefano@torresi.io"
+        }
+    ]
+}
