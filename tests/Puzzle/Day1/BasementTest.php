@@ -49,6 +49,7 @@ class BasementTest extends TestCase
         return [
             [ '(', $noBasementMsg ],
             [ '(((((', $noBasementMsg ],
+            [ '()', $noBasementMsg ],
             [ 'foobar', $malformedInputMsg ],
         ];
     }
