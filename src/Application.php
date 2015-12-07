@@ -21,5 +21,6 @@ class Application extends ConsoleApplication
         parent::__construct($name, $version);
 
         $this->add(new Command\Day1Command());
+        $this->add(new Command\Day2Command());
     }
 }
