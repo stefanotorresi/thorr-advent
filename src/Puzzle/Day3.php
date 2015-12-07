@@ -49,7 +49,7 @@ class Day3 extends Puzzle
      *
      * @return int
      */
-    public function houses(string $input)
+    public function houses(string $input): int
     {
         $this->validateInput($input);
 
@@ -87,7 +87,7 @@ class Day3 extends Puzzle
      * @return int
      *
      */
-    public function robo(string $input)
+    public function robo(string $input): int
     {
         $this->validateInput($input);
 
@@ -149,7 +149,7 @@ class Day3 extends Puzzle
         Assertion::regex($input, '/^[\^><v]+$/', "Input must only consist these characters: '<', '^', '>', 'v");
     }
 
-    private function count(array $houses)
+    private function count(array $houses): int
     {
         $result = 0;
         $recursiveIterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($houses));
