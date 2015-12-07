@@ -41,6 +41,7 @@ class Day4 extends Puzzle
      *   five zeroes is 1048970; that is, the MD5 hash of pqrstuv1048970 looks like 000006136ef....
      *
      * @param string $input
+     * @param string $padding
      *
      * @return int
      */
