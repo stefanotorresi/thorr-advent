@@ -56,7 +56,7 @@ class Day5 extends Puzzle
 
         $count = 0;
 
-        foreach (explode("\n", $input) as $line) {
+        foreach (explode("\n", trim($input)) as $line) {
             if (
                 preg_match("/$hasAtLeastThreeVowels/i", $line)
                 && preg_match("/$hasTwoLettersInARow/i", $line)
@@ -103,7 +103,7 @@ class Day5 extends Puzzle
 
         $count = 0;
 
-        foreach (explode("\n", $input) as $line) {
+        foreach (explode("\n", trim($input)) as $line) {
             if (preg_match("/$hasTwoPairs/i", $line) && preg_match("/$hasRepeatingLetterAroundOne/i", $line)) {
                 $count++;
             }
