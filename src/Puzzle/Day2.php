@@ -13,9 +13,15 @@ use Assert\Assertion;
 
 class Day2 extends Puzzle
 {
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(
         string $name = "I Was Told There Would Be No Math",
-        array $parts = ['paper', 'ribbon']
+        array $parts = [
+            'paper' => 'The elves should order <info>%d</info> square feets of paper',
+            'ribbon' => 'The elves should order <info>%d</info> feets of ribbon',
+        ]
     ) {
         parent::__construct($name, $parts);
     }

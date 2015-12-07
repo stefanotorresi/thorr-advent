@@ -24,32 +24,56 @@ abstract class Puzzle
     protected $parts;
 
     /**
-     * AbstractPuzzle constructor.
+     * Puzzle constructor.
      *
      * @param string   $name  The puzzle name
-     * @param string[] $parts The different puzzle parts names
+     * @param string[] $parts The different puzzle parts in a 'method' => 'output format' array
      */
     public function __construct(string $name, array $parts)
     {
         $this->name = $name;
 
-        foreach ($parts as $part) {
-            Assertion::methodExists($part, $this, sprintf("Could not find part '%s' method in %s", $part, get_called_class()));
+        foreach ($parts as $method => $format) {
+            Assertion::methodExists(
+                $method,
+                $this,
+                sprintf("Could not find part '%s' method in %s", $method, get_called_class())
+            );
+            Assertion::string($format);
         }
 
         $this->parts = $parts;
     }
 
+    /**
+     * Get the name of the puzzle
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
+     * Get the method names of every puzzle part
+     *
      * @return string[]
      */
-    public function getParts(): array
+    public function getPartMethods(): array
     {
-        return $this->parts;
+        return array_keys($this->parts);
+    }
+
+    /**
+     * Get the output format for a specific part
+     *
+     * @param string $part
+     *
+     * @return string
+     */
+    public function getPartFormat(string $part): string
+    {
+        return $this->parts[$part];
     }
 }

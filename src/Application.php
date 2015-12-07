@@ -20,7 +20,7 @@ class Application extends ConsoleApplication
     {
         parent::__construct($name, $version);
 
-        $this->add(new Command\Day1Command());
-        $this->add(new Command\Day2Command());
+        $this->add(new PuzzleCommand('day1', new Puzzle\Day1()));
+        $this->add(new PuzzleCommand('day2', new Puzzle\Day2()));
     }
 }
