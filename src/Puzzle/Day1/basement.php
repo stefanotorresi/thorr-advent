@@ -9,16 +9,20 @@ declare(strict_types=1);
 
 namespace Thorr\AdventOfCode\Puzzle\Day1;
 
+use Assert\Assertion;
+
 function basement(string $input): int
 {
-    $offset = 1;
-    $length = strlen($input);
+    Assertion::regex($input, '/^[\(\)]+$/', 'Input must only consist of \'(\' or \')\'');
 
-    while ($offset <= $length) {
-        if (floor(substr($input, 0, $offset)) === -1) {
-            return $offset;
+    $floor = 0;
+    $steps = str_split($input);
+
+    foreach ($steps as $pos => $step) {
+        $floor += ($step === '(' ? 1 : -1);
+        if ($floor === -1) {
+            return $pos+1;
         }
-        $offset++;
     }
 
     throw new \InvalidArgumentException('Santa never went to the basement');
