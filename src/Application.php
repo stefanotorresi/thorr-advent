@@ -23,5 +23,6 @@ class Application extends ConsoleApplication
         $this->add(new PuzzleCommand('day1', new Puzzle\Day1()));
         $this->add(new PuzzleCommand('day2', new Puzzle\Day2()));
         $this->add(new PuzzleCommand('day3', new Puzzle\Day3()));
+        $this->add(new PuzzleCommand('day4', new Puzzle\Day4()));
     }
 }
