@@ -20,9 +20,12 @@ class Application extends ConsoleApplication
     {
         parent::__construct($name, $version);
 
-        $this->add(new PuzzleCommand('day1', new Puzzle\Day1()));
-        $this->add(new PuzzleCommand('day2', new Puzzle\Day2()));
-        $this->add(new PuzzleCommand('day3', new Puzzle\Day3()));
-        $this->add(new PuzzleCommand('day4', new Puzzle\Day4()));
+        $puzzleFiles = glob(__DIR__ . '/Puzzle/Day*.php');
+
+        foreach ($puzzleFiles as $file) {
+            $puzzleName = pathinfo($file, PATHINFO_FILENAME);
+            $className = __NAMESPACE__ . "\\Puzzle\\$puzzleName";
+            $this->add(new PuzzleCommand(strtolower($puzzleName), new $className()));
+        }
     }
 }
