@@ -17,7 +17,8 @@
         "files": [
             "src/Puzzle/Day1/basement.php",
             "src/Puzzle/Day1/floor.php",
-            "src/Puzzle/Day2/paper.php"
+            "src/Puzzle/Day2/paper.php",
+            "src/Puzzle/Day2/ribbon.php"
         ]
     },
     "autoload-dev": {

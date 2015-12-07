@@ -15,8 +15,8 @@ function floor(string $input): int
 {
     Assertion::regex($input, '/^[\(\)]+$/', 'Input must only consist of \'(\' or \')\'');
 
-    $positiveMatches = preg_match_all ('/\(/', $input);
-    $negativeMatches = preg_match_all ('/\)/', $input);
+    $positiveMatches = preg_match_all('/\(/', $input);
+    $negativeMatches = preg_match_all('/\)/', $input);
 
     return $positiveMatches - $negativeMatches;
 }
