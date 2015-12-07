@@ -120,7 +120,7 @@ class Day2 extends Puzzle
         return $totalAmount;
     }
 
-    protected function validateInput(string $input)
+    private function validateInput(string $input)
     {
         Assertion::regex(
             $input,

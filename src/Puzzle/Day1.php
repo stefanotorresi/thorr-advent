@@ -93,7 +93,7 @@ class Day1 extends Puzzle
         throw new \InvalidArgumentException('Santa never went to the basement');
     }
 
-    protected function validateInput(string $input)
+    private function validateInput(string $input)
     {
         Assertion::regex($input, '/^[\(\)]+$/', 'Input must only consist of \'(\' or \')\'');
     }

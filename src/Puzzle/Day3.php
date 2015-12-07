@@ -149,7 +149,7 @@ class Day3 extends Puzzle
         Assertion::regex($input, '/^[\^><v]+$/', "Input must only consist these characters: '<', '^', '>', 'v");
     }
 
-    protected function count(array $houses)
+    private function count(array $houses)
     {
         $result = 0;
         $recursiveIterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($houses));
