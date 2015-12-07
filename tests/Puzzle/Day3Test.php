@@ -41,4 +41,22 @@ class Day3Test extends TestCase
             [ '^v^v^v^v^v', 2 ],
         ];
     }
+
+    /**
+     * @dataProvider roboValidDataProvider
+     */
+    public function testRoboValidInput(string $input, int $expectedOutput)
+    {
+        $this->assertSame($expectedOutput, $this->puzzle->robo($input));
+    }
+
+    public function roboValidDataProvider()
+    {
+        return [
+            [ '>', 2 ],
+            [ '^v', 3 ],
+            [ '^>v<', 3 ],
+            [ '^v^v^v^v^v', 11 ],
+        ];
+    }
 }

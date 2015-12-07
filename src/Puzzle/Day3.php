@@ -20,6 +20,7 @@ class Day3 extends Puzzle
         string $name = "Perfectly Spherical Houses in a Vacuum",
         array $parts = [
             'houses' => 'Santa delivered at least one present in <info>%d</info> houses',
+            'robo'   => 'Santa together with Robo-Santa delivered at least one present in <info>%d</info> houses',
         ]
     ) {
         parent::__construct($name, $parts);
@@ -52,33 +53,105 @@ class Day3 extends Puzzle
     {
         $this->validateInput($input);
 
-        $result = 0;
         $steps  = str_split($input);
         $houses = [[1]];
 
         $santa = $this->callSanta();
 
         foreach ($steps as $step) {
-            switch ($step) {
-                case '<':
-                    $santa->moveLeft();
-                    $santa->deliverPresent($houses);
-                    break;
-                case '>':
-                    $santa->moveRight();
-                    $santa->deliverPresent($houses);
-                    break;
-                case '^':
-                    $santa->moveUp();
-                    $santa->deliverPresent($houses);
-                    break;
-                case 'v':
-                    $santa->moveDown();
-                    $santa->deliverPresent($houses);
-                    break;
-            }
+            $santa->move($step);
+            $santa->deliverPresent($houses);
         }
 
+        return $this->count($houses);
+    }
+
+    /**
+     * The next year, to speed up the process, Santa creates a robot version of himself, Robo-Santa,
+     * to deliver presents with him.
+     *
+     * Santa and Robo-Santa start at the same location (delivering two presents to the same starting house),
+     * then take turns moving based on instructions from the elf, who is eggnoggedly reading
+     * from the same script as the previous year.
+     *
+     * For example:
+     *
+     * - ^v delivers presents to 3 houses, because Santa goes north, and then Robo-Santa goes south.
+     * - ^>v< now delivers presents to 3 houses, and Santa and Robo-Santa end up back where they started.
+     * - ^v^v^v^v^v now delivers presents to 11 houses, with Santa going one direction and Robo-Santa going the other.
+     *
+     * This year, how many houses receive at least one present?
+     *
+     * @param string $input
+     *
+     * @return int
+     *
+     */
+    public function robo(string $input)
+    {
+        $this->validateInput($input);
+
+        $steps  = str_split($input);
+        $houses = [[1]];
+
+        $santa = $this->callSanta();
+        $roboSanta = $this->callSanta();
+
+        foreach ($steps as $i => $step) {
+            $currentSanta = ($i % 2 === 0) ? $santa : $roboSanta;
+            $currentSanta->move($step);
+            $currentSanta->deliverPresent($houses);
+        }
+
+        return $this->count($houses);
+    }
+
+    private function callSanta()
+    {
+        return new class()
+        {
+            private $x = 0;
+            private $y = 0;
+
+            public function move(string $step)
+            {
+                switch ($step) {
+                    case '<':
+                        $this->x--;
+                        break;
+                    case '>':
+                        $this->x++;
+                        break;
+                    case '^':
+                        $this->y++;
+                        break;
+                    case 'v':
+                        $this->y--;
+                        break;
+                }
+            }
+
+            public function deliverPresent(array &$houses)
+            {
+                if (! isset($houses[$this->x])) {
+                    $houses[$this->x] = [];
+                }
+                if (! isset($houses[$this->x][$this->y])) {
+                    $houses[$this->x][$this->y] = 0;
+                }
+                $houses[$this->x][$this->y]++;
+            }
+        };
+    }
+
+    private function validateInput(string $input)
+    {
+        Assertion::regex($input, '/^[\^><v]+$/', "Input must only consist these characters: '<', '^', '>', 'v");
+    }
+
+    protected function count(array $houses)
+    {
+        $result = 0;
         $recursiveIterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($houses));
         foreach ($recursiveIterator as $housePresents) {
             if ($housePresents >= 1) {
@@ -87,39 +160,5 @@ class Day3 extends Puzzle
         }
 
         return $result;
-    }
-
-    private function callSanta()
-    {
-        return new class() {
-            private $pos = ['x' => 0, 'y' => 0];
-
-            public function moveLeft() {
-                $this->pos['x']++;
-            }
-            public function moveRight() {
-                $this->pos['x']--;
-            }
-            public function moveUp() {
-                $this->pos['y']++;
-            }
-            public function moveDown() {
-                $this->pos['y']--;
-            }
-            public function deliverPresent(array &$houses) {
-                if (! isset($houses[$this->pos['x']])) {
-                    $houses[$this->pos['x']] = [];
-                }
-                if (! isset($houses[$this->pos['x']][$this->pos['y']])) {
-                    $houses[$this->pos['x']][$this->pos['y']] = 0;
-                }
-                $houses[$this->pos['x']][$this->pos['y']]++;
-            }
-        };
-    }
-
-    private function validateInput(string $input)
-    {
-        Assertion::regex($input, '/^[\^><v]+$/', "Input must only consist these characters: '<', '^', '>', 'v");
     }
 }
