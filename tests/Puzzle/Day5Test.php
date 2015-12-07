@@ -25,14 +25,14 @@ class Day5Test extends TestCase
     }
 
     /**
-     * @dataProvider stringValidDataProvider
+     * @dataProvider stringsValidDataProvider
      */
-    public function testMineValidInput(string $input, int $expectedOutput)
+    public function testStringsValidInput(string $input, int $expectedOutput)
     {
         $this->assertSame($expectedOutput, $this->puzzle->strings($input));
     }
 
-    public function stringValidDataProvider()
+    public function stringsValidDataProvider()
     {
         return [
             [ 'aeiouu', 1 ],
@@ -43,6 +43,25 @@ class Day5Test extends TestCase
             [ 'haegwjzuvuyypxyu', 0 ],
             [ "aeiouu\naaa\nugknbfddgicrmopn\njchzalrnumimnmhp\ndvszwmarrgswjxmb\nhaegwjzuvuyypxyu", 3 ],
             [ "iabomphsuyfptoos", 0 ],
+        ];
+    }
+
+    /**
+     * @dataProvider moarStringsValidDataProvider
+     */
+    public function testMoarStringsValidInput(string $input, int $expectedOutput)
+    {
+        $this->assertSame($expectedOutput, $this->puzzle->moarStrings($input));
+    }
+
+    public function moarStringsValidDataProvider()
+    {
+        return [
+            [ 'qjhvhtzxzqqjkmpb', 1 ],
+            [ 'xxyxx', 1 ],
+            [ 'uurcxstgmygtbstg', 0 ],
+            [ 'ieodomkazucvgmuy', 0 ],
+            [ "qjhvhtzxzqqjkmpb\nxxyxx\nuurcxstgmygtbstg\nuurcxstgmygtbstg", 2 ],
         ];
     }
 }
