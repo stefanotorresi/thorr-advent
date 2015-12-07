@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Thorr\AdventOfCode;
+namespace Thorr\Advent;
 
 use Assert\Assertion;
 use Symfony\Component\Console\Command\Command;

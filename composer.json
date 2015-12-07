@@ -1,6 +1,6 @@
 {
-    "name": "stefanotorresi/thorr-advent-of-code",
-    "description": "Advent of Code puzzle solutions in PHP",
+    "name": "stefanotorresi/thorr-advent",
+    "description": "Advent of Code puzzle solutions wrapped in a PHP7 CLI app",
     "type": "Puzzles",
     "require": {
         "php": "^7.0",
@@ -12,13 +12,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Thorr\\AdventOfCode\\": "src/"
+            "Thorr\\Advent\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-4": { "Thorr\\AdventOfCode\\Test\\": "test/" }
+        "psr-4": { "Thorr\\Advent\\Test\\": "test/" }
     },
-    "bin": ["advent-of-code"],
+    "bin": ["advent"],
     "license": "MIT",
     "authors": [
         {

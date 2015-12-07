@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Thorr\AdventOfCode;
+namespace Thorr\Advent;
 
 use Symfony\Component\Console\Application as ConsoleApplication;
 

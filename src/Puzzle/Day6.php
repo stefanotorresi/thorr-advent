@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Thorr\AdventOfCode\Puzzle;
+namespace Thorr\Advent\Puzzle;
 
 use Assert\Assertion;
 
@@ -73,14 +73,38 @@ class Day6 extends Puzzle
             $this->{$matches['instruction']}($grid, ...$args);
         }
 
-        return $this->count($grid);
+        return $this->countLights($grid);
+    }
+
+    /**
+     * @todo
+     *
+     * @param string     $input
+     * @param array|null $grid
+     *
+     * @return int
+     */
+    public function brightness(string $input, array &$grid = null): int
+    {
+        
+    }
+
+    /**
+     * @param int $x
+     * @param int $y
+     *
+     * @return bool[][]
+     */
+    public function createGrid(int $x, int $y): array
+    {
+        return array_fill(0, $x, array_fill(0, $y, 0));
     }
 
     protected function turn(array &$grid, string $mode, int $x1, int $y1, int $x2, int $y2)
     {
         for ($x = $x1; $x <= $x2; $x++) {
             for ($y = $y1; $y <= $y2; $y++) {
-                $grid[$x][$y] = $mode === 'on' ? true : false;
+                $grid[$x][$y] = $mode === 'on' ? 1 : 0;
             }
         }
     }
@@ -89,12 +113,12 @@ class Day6 extends Puzzle
     {
         for ($x = $x1; $x <= $x2; $x++) {
             for ($y = $y1; $y <= $y2; $y++) {
-                $grid[$x][$y] = ! $grid[$x][$y];
+                $grid[$x][$y] = (int) ! $grid[$x][$y];
             }
         }
     }
 
-    private function count(array $grid): int
+    private function countLights(array $grid): int
     {
         $result = 0;
         $recursiveIterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($grid));
@@ -120,16 +144,5 @@ class Day6 extends Puzzle
         });
 
         return array_values($args);
-    }
-
-    /**
-     * @param int $x
-     * @param int $y
-     *
-     * @return bool[][]
-     */
-    public function createGrid(int $x, int $y): array
-    {
-        return array_fill(0, $x, array_fill(0, $y, false));
     }
 }

@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace Thorr\AdventOfCode\Puzzle;
+namespace Thorr\Advent\Puzzle;
 
 class Day4 extends Puzzle
 {

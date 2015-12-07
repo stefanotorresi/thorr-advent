@@ -10,5 +10,5 @@ chdir(__DIR__);
 
 require_once 'vendor/autoload.php';
 
-$application = new Thorr\AdventOfCode\Application();
+$application = new Thorr\Advent\Application();
 $application->run();

@@ -7,10 +7,10 @@
 
 declare(strict_types=1);
 
-namespace Thorr\AdventOfCode\Test\Puzzle;
+namespace Thorr\Advent\Test\Puzzle;
 
 use PHPUnit_Framework_TestCase as TestCase;
-use Thorr\AdventOfCode\Puzzle;
+use Thorr\Advent\Puzzle;
 
 class Day5Test extends TestCase
 {
