@@ -11,7 +11,7 @@ namespace Thorr\AdventOfCode\Command;
 
 use Symfony\Component\Console\{Input\InputInterface, Output\OutputInterface};
 
-use function Thorr\AdventOfCode\Puzzle\Day2\{paperAmount};
+use function Thorr\AdventOfCode\Puzzle\Day2\{paper};
 
 class Day2Command extends AbstractCommand
 {
@@ -31,7 +31,7 @@ class Day2Command extends AbstractCommand
         $inputFileContents = $this->validateInputFile($input);
 
         if (in_array(static::TASK_PAPER, $tasks)) {
-            $paper = paperAmount($inputFileContents);
+            $paper = paper($inputFileContents);
             $output->writeln(sprintf('The elves should order <info>%s</info> square feets of paper', $paper));
         }
 

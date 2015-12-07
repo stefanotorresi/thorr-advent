@@ -11,16 +11,16 @@ namespace Thorr\AdventOfCode\Test\Puzzle\Day2;
 
 use PHPUnit_Framework_TestCase as TestCase;
 
-use function Thorr\AdventOfCode\Puzzle\Day2\paperAmount;
+use function Thorr\AdventOfCode\Puzzle\Day2\paper;
 
-class PaperAmountTest extends TestCase
+class PaperTest extends TestCase
 {
     /**
      * @dataProvider validDataProvider
      */
     public function testValidInput(string $input, int $expectedOutput)
     {
-        $this->assertSame($expectedOutput, paperAmount($input));
+        $this->assertSame($expectedOutput, paper($input));
     }
 
     public function validDataProvider()
@@ -40,7 +40,7 @@ class PaperAmountTest extends TestCase
     public function testInvalidInput(string $input)
     {
         $this->setExpectedException(\InvalidArgumentException::class, "Input must only consist of a list of three integers per line, separated by 'x'");
-        paperAmount($input);
+        paper($input);
     }
 
     public function invalidDataProvider()

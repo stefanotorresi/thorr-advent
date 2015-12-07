@@ -11,7 +11,7 @@ namespace Thorr\AdventOfCode\Puzzle\Day2;
 
 use Assert\Assertion;
 
-function paperAmount(string $input): int
+function paper(string $input): int
 {
     Assertion::regex(
         $input,
