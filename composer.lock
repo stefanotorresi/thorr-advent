@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "690a9a7b7353aae70ef0fbfabecdd3fe",
-    "content-hash": "36a50f57b2c027afd529a42ea3b577a5",
+    "hash": "5131dcbc9cb8f14fa18e6e686a463f73",
+    "content-hash": "475de386d1706af36c2b24d9409d7883",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -59,6 +59,51 @@
                 "validation"
             ],
             "time": "2015-08-21 16:50:17"
+        },
+        {
+            "name": "devster/ubench",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/devster/ubench.git",
+                "reference": "4b5c8217b6067b0156fef2cf268523ed0720be95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/devster/ubench/zipball/4b5c8217b6067b0156fef2cf268523ed0720be95",
+                "reference": "4b5c8217b6067b0156fef2cf268523ed0720be95",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Ubench": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Perret",
+                    "email": "jeremy@devster.org"
+                }
+            ],
+            "description": "Micro PHP library for benchmarking",
+            "homepage": "https://github.com/devster/ubench",
+            "keywords": [
+                "bench",
+                "benchmark",
+                "library",
+                "micro"
+            ],
+            "time": "2015-06-02 08:26:32"
         },
         {
             "name": "symfony/console",

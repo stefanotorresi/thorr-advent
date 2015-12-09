@@ -10,9 +10,11 @@ declare(strict_types=1);
 namespace Thorr\Advent;
 
 use Assert\Assertion;
+use ReflectionMethod;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\{InputArgument, InputInterface, InputOption};
 use Symfony\Component\Console\Output\OutputInterface;
+use Ubench;
 
 class PuzzleCommand extends Command
 {
@@ -57,9 +59,24 @@ class PuzzleCommand extends Command
         $parts       = $this->marshallParts($input);
         $inputBuffer = $this->marshallInput($input);
 
-        foreach ($parts as $part) {
-            $result = $this->puzzle->{$part}($inputBuffer);
+        $output->writeln(sprintf('<question>%s</question>', $this->puzzle->getName()).PHP_EOL);
+        $bench = new Ubench();
+
+        foreach ($parts as $i => $part) {
+            $output->writeln(sprintf('<info>** Part %d: %s **</info>', $i+1, $part).PHP_EOL);
+
+            if (! $input->getOption('short')) {
+                $this->printPuzzleInstructions($output, $part);
+            }
+
+            $result = $bench->run([ $this->puzzle, $part ], $inputBuffer);
             $output->writeln(sprintf($this->puzzle->getPartFormat($part), $result));
+
+            $output->writeln(sprintf(
+                'Time elapsed: %s | Memory usage: %s',
+                $bench->getTime(),
+                $bench->getMemoryUsage()
+            ).PHP_EOL);
         }
     }
 
@@ -96,5 +113,14 @@ class PuzzleCommand extends Command
         Assertion::notEmpty($inputBuffer, 'Input must not be empty');
 
         return $inputBuffer;
+    }
+
+    protected function printPuzzleInstructions(OutputInterface $output, string $part)
+    {
+        $methodRefl = new ReflectionMethod($this->puzzle, $part);
+        $output->writeln(sprintf(
+            '<comment>%s</comment>',
+            preg_replace('/^\s{4}/m', '', $methodRefl->getDocComment())
+        ) . PHP_EOL);
     }
 }

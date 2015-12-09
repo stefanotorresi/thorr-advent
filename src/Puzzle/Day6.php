@@ -52,11 +52,6 @@ class Day6 extends Puzzle
      * - turn off 499,499 through 500,500 would turn off (or leave off) the middle four lights.
      *
      * After following the instructions, how many lights are lit?
-     *
-     * @param string $input
-     * @param array  $grid
-     *
-     * @return int
      */
     public function lights(string $input, array &$grid = null): int
     {
@@ -98,11 +93,6 @@ class Day6 extends Puzzle
      * - toggle 0,0 through 999,999 would increase the total brightness by 2000000.
      *
      * What is the total brightness of all lights combined after following Santa's instructions?
-     *
-     * @param string     $input
-     * @param array|null $grid
-     *
-     * @return int
      */
     public function brightness(string $input, array &$grid = null): int
     {
@@ -112,10 +102,7 @@ class Day6 extends Puzzle
     }
 
     /**
-     * @param int $x
-     * @param int $y
-     *
-     * @return bool[][]
+     * @return int[][]
      */
     public function createGrid(int $x, int $y): array
     {

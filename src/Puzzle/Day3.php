@@ -44,10 +44,6 @@ class Day3 extends Puzzle
      * - ^v^v^v^v^v delivers a bunch of presents to some very lucky children at only 2 houses.
      *
      * How many houses receive at least one present?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function houses(string $input): int
     {
@@ -81,11 +77,6 @@ class Day3 extends Puzzle
      * - ^v^v^v^v^v now delivers presents to 11 houses, with Santa going one direction and Robo-Santa going the other.
      *
      * This year, how many houses receive at least one present?
-     *
-     * @param string $input
-     *
-     * @return int
-     *
      */
     public function robo(string $input): int
     {

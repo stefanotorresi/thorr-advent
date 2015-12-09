@@ -39,11 +39,6 @@ class Day4 extends Puzzle
      *   five zeroes (000001dbbfa...), and it is the lowest such number to do so.
      * - If your secret key is pqrstuv, the lowest number it combines with to make an MD5 hash starting with
      *   five zeroes is 1048970; that is, the MD5 hash of pqrstuv1048970 looks like 000006136ef....
-     *
-     * @param string $input
-     * @param string $padding
-     *
-     * @return int
      */
     public function mine(string $input, string $padding = '00000'): int
     {
@@ -59,10 +54,6 @@ class Day4 extends Puzzle
 
     /**
      * Now find one that starts with six zeroes.
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function mineHarder(string $input): int
     {

@@ -44,10 +44,6 @@ class Day5 extends Puzzle
      * - dvszwmarrgswjxmb is naughty because it contains only one vowel.
      *
      * How many strings are nice?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function strings(string $input): int
     {
@@ -92,10 +88,6 @@ class Day5 extends Puzzle
      *   but no pair that appears twice.
      *
      * How many strings are nice under these new rules?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function moarStrings(string $input): int
     {

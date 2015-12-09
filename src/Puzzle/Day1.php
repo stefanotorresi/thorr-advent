@@ -45,10 +45,6 @@ class Day1 extends Puzzle
      * - ))) and )())()) both result in floor -3.
      *
      * To what floor do the instructions take Santa?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function floor(string $input): int
     {
@@ -71,10 +67,6 @@ class Day1 extends Puzzle
      * - ()()) causes him to enter the basement at character position 5.
      *
      * What is the position of the character that causes Santa to first enter the basement?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function basement(string $input): int
     {

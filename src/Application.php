@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Thorr\Advent;
 
 use Symfony\Component\Console\Application as ConsoleApplication;
+use Symfony\Component\Console\Input\InputOption;
 
 class Application extends ConsoleApplication
 {
@@ -19,6 +20,15 @@ class Application extends ConsoleApplication
     public function __construct($name = self::NAME, $version = self::VERSION)
     {
         parent::__construct($name, $version);
+
+        $this->getDefinition()
+             ->addOption(new InputOption(
+                 'short',
+                 's',
+                 InputOption::VALUE_NONE,
+                 "Short output: omit puzzle instructions"
+             ))
+        ;
 
         $puzzleFiles = glob(__DIR__ . '/Puzzle/Day*.php');
 

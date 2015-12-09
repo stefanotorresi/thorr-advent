@@ -44,10 +44,6 @@ class Day2 extends Puzzle
      *   plus 1 square foot of slack, for a total of 43 square feet.
      *
      * All numbers in the elves' list are in feet. How many total square feet of wrapping paper should they order?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function paper(string $input): int
     {
@@ -92,10 +88,6 @@ class Day2 extends Puzzle
      *   plus 1*1*10 = 10 feet of ribbon for the bow, for a total of 14 feet.
      *
      * How many total feet of ribbon should they order?
-     *
-     * @param string $input
-     *
-     * @return int
      */
     public function ribbon(string $input): int
     {
