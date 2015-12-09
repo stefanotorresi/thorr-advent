@@ -29,12 +29,22 @@ class Application extends ConsoleApplication
              ))
         ;
 
-        $puzzleFiles = glob(__DIR__ . '/Puzzle/Day*.php');
-
-        foreach ($puzzleFiles as $file) {
-            $puzzleName = pathinfo($file, PATHINFO_FILENAME);
-            $className = __NAMESPACE__ . "\\Puzzle\\$puzzleName";
-            $this->add(new PuzzleCommand(strtolower($puzzleName), new $className()));
+        for ($day = 1; $day <= 6; $day++) {
+            $className = __NAMESPACE__ . "\\Puzzle\\Day$day";
+            $this->add(new PuzzleCommand(strtolower("day$day"), new $className()));
         }
     }
+
+    public function getLongVersion()
+    {
+        $version = parent::getLongVersion();
+        $commit  = '@git-commit-short@';
+
+        if ('@'.'git-commit-short@' !== $commit) {
+            $version .= " ($commit)";
+        }
+
+        return $version . ' by <comment>Stefano Torresi</comment>';
+    }
+
 }

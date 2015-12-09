@@ -1,0 +1,27 @@
+{
+  "output": "advent.phar",
+  "main": "advent",
+  "chmod": "0755",
+  "compression": "GZ",
+  "files": [
+    "LICENSE"
+  ],
+  "finder": [
+    {
+      "name": [
+        "*.php"
+      ],
+      "exclude": [
+        "tests",
+        "symfony/console/Tests",
+        "symfony/console/Tester"
+      ],
+      "in": [
+        "vendor",
+        "src"
+      ]
+    }
+  ],
+  "git-commit-short": "git-commit-short",
+  "stub": true
+}

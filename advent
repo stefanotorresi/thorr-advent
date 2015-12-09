@@ -2,13 +2,11 @@
 <?php
 
 if (version_compare(PHP_VERSION, '7.0.0', '<')) {
-    fwrite(STDERR, "PHP needs to be a minimum version of PHP 7.0.0, current is ".PHP_VERSION.PHP_EOL);
+    fwrite(STDERR, "PHP minimum version required is 7.0.0, current is ".PHP_VERSION.PHP_EOL);
     exit(1);
 }
 
-chdir(__DIR__);
-
-require_once 'vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 $application = new Thorr\Advent\Application();
 $application->run();
