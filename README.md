@@ -3,13 +3,15 @@
 
 ## Installation
 
-Via Composer global install
+### Composer global install
 
 ```shell
-$: composer require global stefanotorresi/thorr-advent
+$: composer global require stefanotorresi/thorr-advent
 ```
 
-Via Git
+The executable will be installed in `~/.composer/bin/advent` as you would expect
+
+### Git
 
 ```shell
 $: git clone https://github.com/stefanotorresi/thorr-advent
@@ -17,7 +19,7 @@ $: cd thorr-advent
 $: composer install
 ```
 
-Via phar binary
+### Phar
 `TBD`
 
 ## Usage exampe

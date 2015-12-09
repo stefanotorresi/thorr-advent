@@ -18,6 +18,11 @@
     "autoload-dev": {
         "psr-4": { "Thorr\\Advent\\Test\\": "test/" }
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
     "bin": ["advent"],
     "license": "MIT",
     "authors": [
