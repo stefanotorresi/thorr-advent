@@ -20,7 +20,7 @@ $: cd thorr-advent
 $: composer install
 ```
 
-The executable will `./advent`.
+The executable will be `./advent`.
 
 ### Phar
 `TBD`
