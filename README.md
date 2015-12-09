@@ -1,5 +1,6 @@
 # thorr-advent
-[Advent of Code](http://adventofcode.com/) puzzle solutions wrapped in a PHP7 CLI app
+[Advent of Code](http://adventofcode.com/) puzzle solutions wrapped in a PHP7 CLI app.
+Most overkill and far from code golf as it can be.
 
 ## Installation
 
@@ -9,7 +10,7 @@
 $: composer global require stefanotorresi/thorr-advent
 ```
 
-The executable will be installed in `~/.composer/bin/advent` as you would expect
+The executable will be `~/.composer/bin/advent`.
 
 ### Git
 
@@ -19,21 +20,31 @@ $: cd thorr-advent
 $: composer install
 ```
 
+The executable will `./advent`.
+
 ### Phar
 `TBD`
 
-## Usage exampe
+## Usage
 
-```shell
-$: echo "()()())))((((((((((((" | ./advent day1
-Santa is at floor 9
-Santa entered the basement after stepping into 7 floors
-```
-You can also use an input file as argument and/or specify just one part of the daily puzzle
+Each puzzle is available as a command named `dayN`.
 
+You can use either a file path or stdin as input:  
 ```shell
-$: ./advent day5 day5.txt -p strings 
-There are 236 nice strings in there
+$: advent day1 day1.txt
 ```
 
+```shell
+$: echo "()()())))((((((((((((" | advent day1
+```
 
+Both parts of the puzzle will be executed by default, but you can execute just a single part if you want, 
+using the `--part` option:
+```shell
+$: advent day1 day1.txt --part basement
+```
+
+You can get to know the part names with the `help` command:
+```shell
+$: advent help day1
+```
