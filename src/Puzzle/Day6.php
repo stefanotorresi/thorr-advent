@@ -20,6 +20,7 @@ class Day6 extends Puzzle
         string $name = "Probably a Fire Hazard",
         array $parts = [
             'lights' => 'There are <info>%d</info> lights lit',
+            'brightness' => 'The total brightness is <info>%d</info>',
         ]
     ) {
         parent::__construct($name, $parts);
@@ -58,7 +59,7 @@ class Day6 extends Puzzle
      */
     public function lights(string $input, array &$grid = null): int
     {
-        $pattern = '/^(?<instruction>turn|toggle)(?: (?<mode>on|off))? (?<x1>\d+),(?<y1>\d+) through (?<x2>\d+),(?<y2>\d+)\n?$/i';
+        $pattern = '/^(?<command>\w+)(?: (?<value>[\w-]+))? (?<x1>\d+),(?<y1>\d+) through (?<x2>\d+),(?<y2>\d+)\n?$/i';
 
         if ($grid === null) {
             $grid = $this->createGrid(1000, 1000);
@@ -66,18 +67,35 @@ class Day6 extends Puzzle
 
         foreach (explode("\n", trim($input)) as $line) {
             $valid = preg_match($pattern, $line, $matches);
-            Assertion::same($valid, 1, sprintf('Invalid input line: %s', $line));
+            Assertion::eq($valid, true, sprintf('Invalid input line: %s', $line));
 
-            $args = $this->marshallInstructionArgs($matches);
+            $instruction = $this->marshallInstruction($matches);
 
-            $this->{$matches['instruction']}($grid, ...$args);
+            $this->execute($grid, ...$instruction);
         }
 
-        return $this->countLights($grid);
+        return $this->count($grid);
     }
 
     /**
-     * @todo
+     * You just finish implementing your winning light pattern when you realize
+     * you mistranslated Santa's message from Ancient Nordic Elvish.
+     *
+     * The light grid you bought actually has individual brightness controls;
+     * each light can have a brightness of zero or more. The lights all start at zero.
+     *
+     * The phrase turn on actually means that you should increase the brightness of those lights by 1.
+     *
+     * The phrase turn off actually means that you should decrease the brightness of those lights by 1, to a minimum of zero.
+     *
+     * The phrase toggle actually means that you should increase the brightness of those lights by 2.
+     *
+     * For example:
+     *
+     * - turn on 0,0 through 0,0 would increase the total brightness by 1.
+     * - toggle 0,0 through 999,999 would increase the total brightness by 2000000.
+     *
+     * What is the total brightness of all lights combined after following Santa's instructions?
      *
      * @param string     $input
      * @param array|null $grid
@@ -86,7 +104,9 @@ class Day6 extends Puzzle
      */
     public function brightness(string $input, array &$grid = null): int
     {
-        
+        $input = preg_replace(['/^turn on/im', '/^turn off/im', '/^toggle/im'], ['tune up', 'tune down', 'tune up-twice'], $input);
+
+        return $this->lights($input, $grid);
     }
 
     /**
@@ -100,48 +120,73 @@ class Day6 extends Puzzle
         return array_fill(0, $x, array_fill(0, $y, 0));
     }
 
-    protected function turn(array &$grid, string $mode, int $x1, int $y1, int $x2, int $y2)
+    public function turn(&$light, string $value)
+    {
+        $light = $value === 'on';
+    }
+
+    public function toggle(&$light)
+    {
+        $light = ! $light;
+    }
+
+    public function tune(&$light, string $value)
+    {
+        switch ($value) {
+            case 'up':
+                $increment = 1;
+                break;
+            case 'down':
+                $increment = -1;
+                break;
+            case 'up-twice':
+                $increment = 2;
+                break;
+            default:
+                $increment = 0;
+        }
+
+        if ($light + $increment < 0) {
+            $light = 0;
+            return;
+        }
+
+        $light += $increment;
+    }
+
+    private function execute(array &$grid, callable $command, string $value, int $x1, int $y1, int $x2, int $y2)
     {
         for ($x = $x1; $x <= $x2; $x++) {
             for ($y = $y1; $y <= $y2; $y++) {
-                $grid[$x][$y] = $mode === 'on' ? 1 : 0;
+                $command($grid[$x][$y], $value);
             }
         }
     }
 
-    protected function toggle(array &$grid, int $x1, int $y1, int $x2, int $y2)
-    {
-        for ($x = $x1; $x <= $x2; $x++) {
-            for ($y = $y1; $y <= $y2; $y++) {
-                $grid[$x][$y] = (int) ! $grid[$x][$y];
-            }
-        }
-    }
-
-    private function countLights(array $grid): int
+    private function count(array $grid): int
     {
         $result = 0;
         $recursiveIterator = new \RecursiveIteratorIterator(new \RecursiveArrayIterator($grid));
         foreach ($recursiveIterator as $light) {
-            if ($light) {
-                $result++;
-            }
+            $result += $light;
         }
 
         return $result;
     }
 
-    private function marshallInstructionArgs(array $matches): array
+    private function marshallInstruction(array $matches): array
     {
-        $args = array_filter(array_splice($matches, 2), function ($val, $key) {
-            return is_string($key) && $val !== '';
-        }, ARRAY_FILTER_USE_BOTH);
+        $args = array_filter(array_splice($matches, 1), function ($key) {
+            return is_string($key);
+        }, ARRAY_FILTER_USE_KEY);
 
         array_walk($args, function (&$val, $key) {
             if (in_array($key, [ 'x1', 'x2', 'y1', 'y2' ])) {
                 $val = (int) $val;
             }
         });
+
+        $args['command'] = [$this, $args['command']];
 
         return array_values($args);
     }

@@ -44,4 +44,25 @@ class Day6Test extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider brightnessDataProvider
+     */
+    public function testBrightness(string $input, int $expectedOutput)
+    {
+        $grid = $this->puzzle->createGrid(10, 10);
+        $this->assertSame($expectedOutput, $this->puzzle->brightness($input, $grid));
+    }
+
+    public function brightnessDataProvider()
+    {
+        return [
+            [ 'turn on 0,0 through 2,2', 9 ],
+            [ 'turn on 0,0 through 0,0', 1 ],
+            [ 'toggle 0,0 through 9,9', 200 ],
+            [ "turn on 0,0 through 9,9\nturn off 0,0 through 9,9", 0 ],
+            [ "turn on 0,0 through 9,9\ntoggle 0,0 through 9,9", 300 ],
+            [ 'turn off 0,0 through 0,0', 0 ],
+        ];
+    }
+
 }
