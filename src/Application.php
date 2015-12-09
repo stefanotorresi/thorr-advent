@@ -14,7 +14,7 @@ use Symfony\Component\Console\Input\InputOption;
 
 class Application extends ConsoleApplication
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.1.0-dev';
 
     public function __construct($name = 'Thorr\'s Advent Of Code', $version = self::VERSION)
     {
