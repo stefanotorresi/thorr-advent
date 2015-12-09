@@ -41,7 +41,8 @@ class Day6 extends Puzzle
      * therefore refers to 9 lights in a 3x3 square.
      * The lights all start turned off.
      *
-     * To defeat your neighbors this year, all you have to do is set up your lights by doing the instructions Santa sent you in order.
+     * To defeat your neighbors this year, all you have to do is set up your lights
+     * by doing the instructions Santa sent you in order.
      *
      * For example:
      *
@@ -86,7 +87,8 @@ class Day6 extends Puzzle
      *
      * The phrase turn on actually means that you should increase the brightness of those lights by 1.
      *
-     * The phrase turn off actually means that you should decrease the brightness of those lights by 1, to a minimum of zero.
+     * The phrase turn off actually means that you should decrease the brightness of those lights by 1,
+     * to a minimum of zero.
      *
      * The phrase toggle actually means that you should increase the brightness of those lights by 2.
      *
